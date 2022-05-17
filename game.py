@@ -9,8 +9,11 @@ import numpy as np
 
 class Settings:
     def __init__(self):
+        
+        # Change the width and height to make a bigger screen
         self.width = 80
         self.height = 50
+        
         self.rect_len = 15
 
 class Snake:
