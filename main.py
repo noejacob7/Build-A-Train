@@ -11,6 +11,7 @@ from pygame.locals import KEYDOWN, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_ESCAPE
 from pygame.locals import QUIT
 
 from game import Game
+from game import Background
 
 black = pygame.Color(0, 0, 0)
 white = pygame.Color(255, 255, 255)
@@ -23,6 +24,11 @@ blue = pygame.Color(32, 178, 170)
 bright_blue = pygame.Color(32, 200, 200)
 yellow = pygame.Color(255, 205, 0)
 bright_yellow = pygame.Color(255, 255, 0)
+
+# Loading the background
+background = pygame.image.load('./images/background.jpeg')
+# Creating background class
+BackGround = Background(background, [0,0])
 
 game = Game()
 rect_len = game.settings.rect_len
