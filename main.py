@@ -114,7 +114,9 @@ def game_loop(player, fps=10):
 
         game.do_move(move)
 
-        screen.fill(black)
+        # Add the screen background
+        screen.fill(white)
+        screen.blit(BackGround.image, BackGround.rect)
 
         game.snake.blit(rect_len, screen)
         game.strawberry.blit(screen)
