@@ -15,6 +15,16 @@ class Settings:
         self.height = 50
         
         self.rect_len = 15
+        
+# Created a new class to account for an external background image
+class Background(pygame.sprite.Sprite):
+    #new class to add a background image
+    def __init__(self, image_file, location):
+        #call Sprite initializer
+        pygame.sprite.Sprite.__init__(self)  
+        self.image = image_file
+        self.rect = self.image.get_rect()
+        self.rect.left, self.rect.top = location
 
 class Snake:
     def __init__(self):
