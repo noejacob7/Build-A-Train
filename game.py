@@ -106,9 +106,10 @@ class Strawberry():
         
         self.position[0] = random.randint(0, self.settings.width-1)
         self.position[1] = random.randint(0, self.settings.height-1)
-
-        self.position[0] = random.randint(9, 19)
-        self.position[1] = random.randint(9, 19)
+    
+#         It is causing the food/ collectable to spawn in a small area.
+#         self.position[0] = random.randint(9, 19)
+#         self.position[1] = random.randint(9, 19)
         
         if self.position in snake.segments:
             self.random_pos(snake)
