@@ -108,6 +108,7 @@ def initial_interface():
 def game_loop(player, fps=10):
     game.restart_game()
     timer = 0
+    which_turn = "right"
 
     while not game.game_end():
 
