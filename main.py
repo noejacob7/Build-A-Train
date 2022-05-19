@@ -39,6 +39,7 @@ screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height
 pygame.display.set_caption('Gluttonous')
 
 crash_sound = pygame.mixer.Sound('./sound/crash2.wav')
+drift_sound = pygame.mixer.Sound('./sound/tokyo_drift.wav')
 
 
 def text_objects(text, font, color=black):
@@ -79,6 +80,8 @@ def quitgame():
 
 
 def crash():
+    # Stop the background sound immediately after the player crashes
+    pygame.mixer.Sound.stop(drift_sound)
     pygame.mixer.Sound.play(crash_sound)
     message_display('crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
     time.sleep(1)
@@ -104,10 +107,19 @@ def initial_interface():
 
 def game_loop(player, fps=10):
     game.restart_game()
+    timer = 0
 
     while not game.game_end():
 
         pygame.event.pump()
+        
+        # Play the Background music on repeat
+        if timer == 0:
+            pygame.mixer.Sound.set_volume(drift_sound,0.35)
+            pygame.mixer.Sound.play(drift_sound)
+            timer = 220
+        
+        timer -=1
 
         move = human_move()
         fps = 5
