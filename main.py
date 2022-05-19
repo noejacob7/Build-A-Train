@@ -85,17 +85,20 @@ def crash():
     pygame.mixer.Sound.play(crash_sound)
     message_display('crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
     time.sleep(1)
+    screen.fill(white)
 
 
 def initial_interface():
+    
     intro = True
+    screen.fill(white)
+    
     while intro:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
 
-        screen.fill(white)
         message_display('Gluttonous', game.settings.width / 2 * 15, game.settings.height / 4 * 15)
 
         button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
