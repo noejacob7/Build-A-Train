@@ -120,9 +120,15 @@ def game_loop(player, fps=10):
             timer = 220
         
         timer -=1
+        
+        # Turn Sound
+        if which_turn != snake.facing:
+            pygame.mixer.Sound.stop(turn_drift)
+            which_turn = snake.facing
+            pygame.mixer.Sound.play(turn_drift)
 
         move = human_move()
-        fps = 5
+        fps = 8
 
         game.do_move(move)
 
