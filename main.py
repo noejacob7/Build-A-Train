@@ -38,7 +38,7 @@ fpsClock = pygame.time.Clock()
 screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height * 15))
 pygame.display.set_caption('Gluttonous')
 
-crash_sound = pygame.mixer.Sound('./sound/crash.wav')
+crash_sound = pygame.mixer.Sound('./sound/crash2.wav')
 
 
 def text_objects(text, font, color=black):
