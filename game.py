@@ -6,6 +6,16 @@ Created on Wed Apr 25 15:19:25 2018
 """
 import pygame, random
 import numpy as np
+import os, sys
+
+
+def base_path(path):
+    if getattr(sys, 'frozen', None):
+        basedir = sys._MEIPASS
+    else:
+        basedir =  os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(basedir, path)
+
 
 class Settings:
     def __init__(self):
@@ -13,7 +23,6 @@ class Settings:
         # Change the width and height to make a bigger screen
         self.width = 80
         self.height = 50
-        
         self.rect_len = 15
         
 # Created a new class to account for an external background image
@@ -29,17 +38,17 @@ class Background(pygame.sprite.Sprite):
 class Snake:
     def __init__(self):
         
-        self.image_up = pygame.image.load('images/head_up.bmp')
-        self.image_down = pygame.image.load('images/head_down.bmp')
-        self.image_left = pygame.image.load('images/head_left.bmp')
-        self.image_right = pygame.image.load('images/head_right.bmp')
+        self.image_up = pygame.image.load(base_path('images/head_up.bmp'))
+        self.image_down = pygame.image.load(base_path('images/head_down.bmp'))
+        self.image_left = pygame.image.load(base_path('images/head_left.bmp'))
+        self.image_right = pygame.image.load(base_path('images/head_right.bmp'))
 
-        self.tail_up = pygame.image.load('images/tail_up.bmp')
-        self.tail_down = pygame.image.load('images/tail_down.bmp')
-        self.tail_left = pygame.image.load('images/tail_left.bmp')
-        self.tail_right = pygame.image.load('images/tail_right.bmp')
+        self.tail_up = pygame.image.load(base_path('images/tail_up.bmp'))
+        self.tail_down = pygame.image.load(base_path('images/tail_down.bmp'))
+        self.tail_left = pygame.image.load(base_path('images/tail_left.bmp'))
+        self.tail_right = pygame.image.load(base_path('images/tail_right.bmp'))
             
-        self.image_body = pygame.image.load('images/body.bmp')
+        self.image_body = pygame.image.load(base_path('images/body.bmp'))
 
         self.facing = "right"
         self.initialize()
@@ -97,12 +106,12 @@ class Strawberry():
         self.settings = settings
         
         self.style = str(random.randint(1, 8))
-        self.image = pygame.image.load('images/food' + str(self.style) + '.bmp')        
+        self.image = pygame.image.load(base_path('images/food' + str(self.style) + '.bmp'))
         self.initialize()
         
     def random_pos(self, snake):
         self.style = str(random.randint(1, 8))
-        self.image = pygame.image.load('images/food' + str(self.style) + '.bmp')                
+        self.image = pygame.image.load(base_path('images/food' + str(self.style) + '.bmp'))
         
         self.position[0] = random.randint(0, self.settings.width-1)
         self.position[1] = random.randint(0, self.settings.height-1)
