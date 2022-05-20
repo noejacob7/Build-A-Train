@@ -45,6 +45,7 @@ pygame.display.set_caption('Gluttonous')
 
 crash_sound = pygame.mixer.Sound(base_path('sound/crash2.wav'))
 drift_sound = pygame.mixer.Sound(base_path('sound/tokyo_drift.wav'))
+turn_drift = pygame.mixer.Sound(base_path('sound/turn_drift.wav'))
 
 
 def text_objects(text, font, color=black):
