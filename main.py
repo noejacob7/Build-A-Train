@@ -9,9 +9,14 @@ import pygame
 import time
 from pygame.locals import KEYDOWN, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_ESCAPE
 from pygame.locals import QUIT
+import os, sys
 
 from game import Game
 from game import Background
+
+def base_path(path):
+    basedir =  os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(basedir, path)
 
 black = pygame.Color(0, 0, 0)
 white = pygame.Color(255, 255, 255)
@@ -26,7 +31,7 @@ yellow = pygame.Color(255, 205, 0)
 bright_yellow = pygame.Color(255, 255, 0)
 
 # Loading the background
-background = pygame.image.load('./images/background.jpeg')
+background = pygame.image.load(base_path('images/background.jpeg'))
 # Creating background class
 BackGround = Background(background, [0,0])
 
@@ -38,8 +43,8 @@ fpsClock = pygame.time.Clock()
 screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height * 15))
 pygame.display.set_caption('Gluttonous')
 
-crash_sound = pygame.mixer.Sound('./sound/crash2.wav')
-drift_sound = pygame.mixer.Sound('./sound/tokyo_drift.wav')
+crash_sound = pygame.mixer.Sound(base_path('sound/crash2.wav'))
+drift_sound = pygame.mixer.Sound(base_path('sound/tokyo_drift.wav'))
 
 
 def text_objects(text, font, color=black):
@@ -175,4 +180,5 @@ def human_move():
 
 
 if __name__ == "__main__":
+    os.chdir(base_path(''))
     initial_interface()
