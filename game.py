@@ -57,6 +57,7 @@ class Snake:
         self.position = [6, 6]
         self.segments = [[6 - i, 6] for i in range(3)]
         self.score = 0
+        self.facing = "right"
 
     def blit_body(self, x, y, screen):
         screen.blit(self.image_body, (x, y))
