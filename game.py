@@ -6,6 +6,11 @@ Created on Wed Apr 25 15:19:25 2018
 """
 import pygame, random
 import numpy as np
+import os, sys
+
+def base_path(path):
+    basedir =  os.path.abspath(os.path.dirname(__file__))
+    return os.path.join(basedir, path)
 
 class Settings:
     def __init__(self):
@@ -27,10 +32,10 @@ class Background(pygame.sprite.Sprite):
 class Train:
     def __init__(self):
         #loading the required images for the sprites head
-        self.image_left = pygame.image.load('images/trainHeadLeft.png')
-        self.image_right = pygame.image.load('images/trainHeadRight.png')
+        self.image_left = pygame.image.load(base_path('images/trainHeadLeft.png'))
+        self.image_right = pygame.image.load(base_path('images/trainHeadRight.png'))
         #loading the required image for the sprites tail
-        self.tail = pygame.image.load('images/trainTail.png')
+        self.tail = pygame.image.load(base_path('images/trainTail.png'))
 
         #variable used to cycle through images for the train body
         self.num = 0
@@ -49,7 +54,7 @@ class Train:
 
     def blit_body(self, x, y, screen):
         #loading the different coloured images of the train
-        train_image = 'images/trainBody' + str(self.num % 8) + '.png'
+        train_image = base_path('images/trainBody' + str(self.num % 8) + '.png')
         self.image_body = pygame.image.load(train_image)
         #incrementing the number to cycle through the images
         self.num += 1
@@ -140,11 +145,11 @@ class Person():
     def __init__(self, settings):
         self.settings = settings
         
-        self.image = pygame.image.load('images/human.png')      
+        self.image = pygame.image.load(base_path('images/human.png'))
         self.initialize()
         
     def random_pos(self, train):
-        self.image = pygame.image.load('images/human.png')          
+        self.image = pygame.image.load(base_path('images/human.png'))
 
         #the range of the random.randint has been changed to start at 1
         #this makes sure the person does not form on the edge
