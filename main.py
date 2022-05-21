@@ -161,7 +161,9 @@ def game_loop(player, fps=10):
             pygame.mixer.Sound.play(turn_drift)
 
         move = human_move()
-        fps = 8
+        #changing the fps to 6, as the game runs best at this fps, when compared with other 
+        #values
+        fps = 6
 
         game.do_move(move)
 
