@@ -35,6 +35,11 @@ background = pygame.image.load(base_path('images/background.png'))
 # Creating background class
 BackGround = Background(background, [0,0])
 
+#Loading the Cover image
+cover = pygame.image.load(base_path('images/Cover_Image.jpeg'))
+#creating Cover image
+Cover = Background(cover, [0,0])
+
 game = Game()
 rect_len = game.settings.rect_len
 snake = game.snake
@@ -94,12 +99,14 @@ def crash():
     message_display('crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
     time.sleep(1)
     screen.fill(white)
+    screen.blit(Cover.image, Cover.rect)
 
 
 def initial_interface():
     
     intro = True
     screen.fill(white)
+    screen.blit(Cover.image, Cover.rect)
     timer = 0
     flag = False
     
