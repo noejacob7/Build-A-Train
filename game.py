@@ -38,20 +38,16 @@ class Background(pygame.sprite.Sprite):
 
 class Snake:
     def __init__(self):
+        #loading the required images for the sprites head
+        self.image_left = pygame.image.load(base_path('images/trainHeadLeft.png'))
+        self.image_right = pygame.image.load(base_path('images/trainHeadRight.png'))
+        #loading the required image for the sprites tail
+        self.tail = pygame.image.load(base_path('images/trainTail.png'))
+
+        #variable used to cycle through images for the train body
+        self.num = 0
         
-        self.image_up = pygame.image.load(base_path('images/head_up.bmp'))
-        self.image_down = pygame.image.load(base_path('images/head_down.bmp'))
-        self.image_left = pygame.image.load(base_path('images/head_left.bmp'))
-        self.image_right = pygame.image.load(base_path('images/head_right.bmp'))
 
-        self.tail_up = pygame.image.load(base_path('images/tail_up.bmp'))
-        self.tail_down = pygame.image.load(base_path('images/tail_down.bmp'))
-        self.tail_left = pygame.image.load(base_path('images/tail_left.bmp'))
-        self.tail_right = pygame.image.load(base_path('images/tail_right.bmp'))
-            
-        self.image_body = pygame.image.load(base_path('images/body.bmp'))
-
-        self.facing = "right"
         self.initialize()
 
     def initialize(self):
@@ -61,29 +57,75 @@ class Snake:
         self.facing = "right"
 
     def blit_body(self, x, y, screen):
+        #loading the different coloured images of the train
+        train_image = 'images/trainBody' + str(self.num % 8) + '.png'
+        self.image_body = pygame.image.load(base_path(train_image))
+        #incrementing the number to cycle through the images
+        self.num += 1
+        #displaying the required image and the coordinates of the train
         screen.blit(self.image_body, (x, y))
         
     def blit_head(self, x, y, screen):
-        if self.facing == "up":
-            screen.blit(self.image_up, (x, y))
-        elif self.facing == "down":
-            screen.blit(self.image_down, (x, y))  
-        elif self.facing == "left":
+        #the position of the second and third part of the sprite
+        #done to know the correct orientation sprite head, as will be shown later in the code
+        second_elem = self.segments[1]
+        third_elem = self.segments[2]
+
+        #if left display left image
+        if self.facing == "left":
             screen.blit(self.image_left, (x, y))  
-        else:
-            screen.blit(self.image_right, (x, y))  
-            
-    def blit_tail(self, x, y, screen):
-        tail_direction = [self.segments[-2][i] - self.segments[-1][i] for i in range(2)]
+
+        #if right face display right
+        elif self.facing == "right":
+            screen.blit(self.image_right, (x, y))
+
+        #self.carry_on remembers the current image of the sprites head
+        #so as the train continues moving downwards or upwards, the correct image is still displayed
+
+        #direction is downward, and the sprite was previously moving right
+        #the orientation of the head of the sprite remains right
+        elif self.facing == "down" and second_elem[0] > third_elem[0] and second_elem[1] == third_elem[1]:
+            screen.blit(self.image_right, (x, y))
+            self.carry_on = self.image_right
         
+        #direction is upward, and the sprite was previously moving right
+        #the orientation of the head of the sprite remains right
+        elif self.facing == "up" and second_elem[0] > third_elem[0] and second_elem[1] == third_elem[1]:
+            screen.blit(self.image_right, (x, y))
+            self.carry_on = self.image_right
+
+        #direction is downward, and the sprite was previously moving left
+        #the orientation of the head of the sprite remains left
+        elif self.facing == "down" and second_elem[0] < third_elem[0] and second_elem[1] == third_elem[1]:
+            screen.blit(self.image_left, (x, y))
+            self.carry_on = self.image_left
+        
+        #direction is upward, and the sprite was previously moving left
+        #the orientation of the head of the sprite remains left
+        elif self.facing == "up" and second_elem[0] < third_elem[0] and second_elem[1] == third_elem[1]:
+            screen.blit(self.image_left, (x, y))
+            self.carry_on = self.image_left
+        
+        #the sprite already turned and is continues to move downwards
+        elif self.facing == "down":
+            screen.blit(self.carry_on, (x, y))
+        
+        #sprite already turned and continues to move upward
+        elif self.facing == "up":
+            screen.blit(self.carry_on, (x, y)) 
+            
+     def blit_tail(self, x, y, screen):
+        #subtracting the last and second last segments x and y coordinates, and based
+        #on that the direction of the tail of train changes
+        tail_direction = [self.segments[-2][i] - self.segments[-1][i] for i in range(2)]
         if tail_direction == [0, -1]:
-            screen.blit(self.tail_up, (x, y))
+            screen.blit(self.tail, (x, y))
         elif tail_direction == [0, 1]:
-            screen.blit(self.tail_down, (x, y))  
+            screen.blit(self.tail, (x, y))  
         elif tail_direction == [-1, 0]:
-            screen.blit(self.tail_left, (x, y))  
+            screen.blit(self.tail, (x, y))  
         else:
-            screen.blit(self.tail_right, (x, y))  
+            screen.blit(self.tail, (x, y)) 
     
     def blit(self, rect_len, screen):
         self.blit_head(self.segments[0][0]*rect_len, self.segments[0][1]*rect_len, screen)                
