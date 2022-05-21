@@ -42,7 +42,7 @@ Cover = Background(cover, [0,0])
 
 game = Game()
 rect_len = game.settings.rect_len
-snake = game.snake
+train = game.train
 pygame.init()
 fpsClock = pygame.time.Clock()
 screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height * 15))
@@ -155,9 +155,9 @@ def game_loop(player, fps=10):
         timer -=1
         
         # Turn Sound
-        if which_turn != snake.facing:
+        if which_turn != train.facing:
             pygame.mixer.Sound.stop(turn_drift)
-            which_turn = snake.facing
+            which_turn = train.facing
             pygame.mixer.Sound.play(turn_drift)
 
         move = human_move()
@@ -169,8 +169,8 @@ def game_loop(player, fps=10):
         screen.fill(white)
         screen.blit(BackGround.image, BackGround.rect)
 
-        game.snake.blit(rect_len, screen)
-        game.strawberry.blit(screen)
+        game.train.blit(rect_len, screen)
+        game.person.blit(screen)
         game.blit_score(white, screen)
 
         pygame.display.flip()
@@ -181,7 +181,7 @@ def game_loop(player, fps=10):
 
 
 def human_move():
-    direction = snake.facing
+    direction = train.facing
 
     for event in pygame.event.get():
         if event.type == QUIT:
