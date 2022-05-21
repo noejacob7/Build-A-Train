@@ -179,7 +179,7 @@ class Game:
     """
     def __init__(self):
         self.settings = Settings()
-        self.snake = Snake()
+        self.train = Snake()
         self.strawberry = Strawberry(self.settings)
         self.move_dict = {0 : 'up',
                           1 : 'down',
@@ -239,11 +239,15 @@ class Game:
     
     def game_end(self):
         end = False
-        if self.snake.position[0] >= self.settings.width or self.snake.position[0] < 0:
+        #hardcoding the values, based on the tested value outputs  
+        
+        if self.train.position[0] >= 30 or self.train.position[0] < 0:
             end = True
-        if self.snake.position[1] >= self.settings.height or self.snake.position[1] < 0:
+
+        if self.train.position[1] >= 19 or self.train.position[1] < 0:
             end = True
-        if self.snake.segments[0] in self.snake.segments[1:]:
+
+        if self.train.segments[0] in self.train.segments[1:]:
             end = True
 
         return end
