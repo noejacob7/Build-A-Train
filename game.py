@@ -23,7 +23,8 @@ class Settings:
         # Change the width and height to make a bigger screen
         self.width = 80
         self.height = 50
-        self.rect_len = 15
+        #changing the rect length to accomodate the new sprite image
+        self.rect_len = 40
         
 # Created a new class to account for an external background image
 class Background(pygame.sprite.Sprite):
