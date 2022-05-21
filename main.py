@@ -96,7 +96,7 @@ def crash():
     # Stop the background sound immediately after the player crashes
     pygame.mixer.Sound.stop(drift_sound)
     pygame.mixer.Sound.play(crash_sound)
-    message_display('crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
+    message_display('Crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
     time.sleep(1)
     screen.fill(white)
     screen.blit(Cover.image, Cover.rect)
