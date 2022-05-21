@@ -46,6 +46,7 @@ pygame.display.set_caption('Gluttonous')
 crash_sound = pygame.mixer.Sound(base_path('sound/crash2.wav'))
 drift_sound = pygame.mixer.Sound(base_path('sound/tokyo_drift.wav'))
 turn_drift = pygame.mixer.Sound(base_path('sound/turn_drift.wav'))
+background_music = pygame.mixer.Sound(base_path('sound/Background_music.wav'))
 
 
 def text_objects(text, font, color=black):
@@ -78,6 +79,7 @@ def button(msg, x, y, w, h, inactive_color, active_color, action=None, parameter
     TextSurf, TextRect = text_objects(msg, smallText)
     TextRect.center = (x + (w / 2), y + (h / 2))
     screen.blit(TextSurf, TextRect)
+    return True
 
 
 def quitgame():
@@ -98,16 +100,29 @@ def initial_interface():
     
     intro = True
     screen.fill(white)
+    timer = 0
+    flag = False
     
     while intro:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                
+        if flag == True:
+            flag = True
+            timer = 0
+
+        # Background Music
+        if timer == 0:
+            pygame.mixer.Sound.play(background_music)
+            pygame.mixer.Sound.set_volume(background_music,0.35)
+            timer = 6045
+        timer -=1
 
         message_display('Gluttonous', game.settings.width / 2 * 15, game.settings.height / 4 * 15)
 
-        button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
+        flag = button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
         button('Quit', 270, 240, 80, 40, red, bright_red, quitgame)
 
         pygame.display.update()
@@ -115,6 +130,7 @@ def initial_interface():
 
 
 def game_loop(player, fps=10):
+    pygame.mixer.Sound.stop(background_music)
     game.restart_game()
     timer = 0
     which_turn = "right"
