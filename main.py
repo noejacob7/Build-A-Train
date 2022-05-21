@@ -31,7 +31,7 @@ yellow = pygame.Color(255, 205, 0)
 bright_yellow = pygame.Color(255, 255, 0)
 
 # Loading the background
-background = pygame.image.load(base_path('images/background.jpeg'))
+background = pygame.image.load(base_path('images/background.png'))
 # Creating background class
 BackGround = Background(background, [0,0])
 
