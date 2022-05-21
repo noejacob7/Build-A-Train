@@ -60,7 +60,7 @@ def text_objects(text, font, color=black):
 
 
 def message_display(text, x, y, color=black):
-    large_text = pygame.font.SysFont('comicsansms', 50)
+    large_text = pygame.font.SysFont('ヒラキノ角コシックw3', 100)
     text_surf, text_rect = text_objects(text, large_text, color)
     text_rect.center = (x, y)
     screen.blit(text_surf, text_rect)
@@ -127,7 +127,7 @@ def initial_interface():
             timer = 6045
         timer -=1
 
-        message_display('Gluttonous', game.settings.width / 2 * 15, game.settings.height / 4 * 15)
+        message_display('Gluttonous',  game.settings.width / 2 * 20,  game.settings.height / 4 * 5, color=(100,100,100))
 
         flag = button('Go!', 510, 340, 100, 50, green, bright_green, game_loop, 'human')
         button('Quit', 670, 340, 100, 50, red, bright_red, quitgame)
