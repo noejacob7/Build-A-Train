@@ -129,9 +129,11 @@ def initial_interface():
 
         message_display('Gluttonous', game.settings.width / 2 * 15, game.settings.height / 4 * 15)
 
-        flag = button('Go!', 80, 240, 80, 40, green, bright_green, game_loop, 'human')
-        button('Quit', 270, 240, 80, 40, red, bright_red, quitgame)
-
+        flag = button('Go!', 510, 340, 100, 50, green, bright_green, game_loop, 'human')
+        button('Quit', 670, 340, 100, 50, red, bright_red, quitgame)
+        
+        #adjusted the position of the buttons for the new screen size
+        
         pygame.display.update()
         pygame.time.Clock().tick(15)
 
