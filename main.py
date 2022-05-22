@@ -5,8 +5,6 @@ from pygame.locals import KEYDOWN, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_ESCAPE
 from pygame.locals import QUIT
 import os
 
-from sqlalchemy import false
-
 from game import Game
 from game import Background
 
@@ -32,6 +30,7 @@ blue = pygame.Color(32, 178, 170)
 bright_blue = pygame.Color(32, 200, 200)
 yellow = pygame.Color(255, 205, 0)
 bright_yellow = pygame.Color(255, 255, 0)
+orange = pygame.Color(204,85,0)
 
 # Loading the background image
 background = pygame.image.load(base_path('images/background.png'))
@@ -42,6 +41,11 @@ BackGround = Background(background, [0,0])
 cover = pygame.image.load(base_path('images/Cover_Image.png'))
 # Creating Cover class
 Cover = Background(cover, [0,0])
+
+# Loading the Game Over image
+game_over = pygame.image.load(base_path('images/Game_over.jpeg'))
+# Creating Game_over class
+Game_over = Background(game_over, [0,0])
 
 # Initialize the game class and all the settings required
 game = Game()
@@ -83,7 +87,7 @@ def message_display(text, x, y, color=black):
     
     The function displays the message with the given parameters in the game window.
     """
-    large_text = pygame.font.SysFont('cambria', 100)
+    large_text = pygame.font.SysFont('cambria', 70)
     text_surf, text_rect = text_objects(text, large_text, color)
     text_rect.center = (x, y)
     screen.blit(text_surf, text_rect)
@@ -146,7 +150,15 @@ def crash():
     pygame.mixer.Sound.stop(drift_sound)
     pygame.mixer.Sound.play(crash_sound)
     message_display('Crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
+    time.sleep(0.4)
+
+    # Game Over screen
+    screen.fill(white)
+    screen.blit(Game_over.image, Game_over.rect)
+    message_display('Your Score: ' + str(train.score), game.settings.width / 2 * 15, game.settings.height / 3 * 30, orange)
     time.sleep(2)
+
+    # Change to cover image
     screen.fill(white)
     screen.blit(Cover.image, Cover.rect)
 
