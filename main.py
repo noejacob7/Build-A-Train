@@ -5,6 +5,8 @@ from pygame.locals import KEYDOWN, K_RIGHT, K_LEFT, K_UP, K_DOWN, K_ESCAPE
 from pygame.locals import QUIT
 import os
 
+from sqlalchemy import false
+
 from game import Game
 from game import Background
 
@@ -37,7 +39,7 @@ background = pygame.image.load(base_path('images/background.png'))
 BackGround = Background(background, [0,0])
 
 # Loading the Cover image
-cover = pygame.image.load(base_path('images/Cover_Image.jpeg'))
+cover = pygame.image.load(base_path('images/Cover_Image.png'))
 # Creating Cover class
 Cover = Background(cover, [0,0])
 
@@ -81,7 +83,7 @@ def message_display(text, x, y, color=black):
     
     The function displays the message with the given parameters in the game window.
     """
-    large_text = pygame.font.SysFont('ヒラキノ角コシックw3', 100)
+    large_text = pygame.font.SysFont('cambria', 100)
     text_surf, text_rect = text_objects(text, large_text, color)
     text_rect.center = (x, y)
     screen.blit(text_surf, text_rect)
@@ -119,7 +121,7 @@ def button(msg, x, y, w, h, inactive_color, active_color, action=None, parameter
         pygame.draw.rect(screen, inactive_color, (x, y, w, h))
 
     # Creating the button elements
-    smallText = pygame.font.SysFont('comicsansms', 20)
+    smallText = pygame.font.SysFont('cambria', 30)
     TextSurf, TextRect = text_objects(msg, smallText)
     TextRect.center = (x + (w / 2), y + (h / 2))
 
@@ -184,12 +186,9 @@ def initial_interface():
             timer = 6045
         timer -=1
 
-        # Display the game title
-        message_display('Build the Train',  game.settings.width / 2 * 20,  game.settings.height / 4 * 5, color=(100,100,100))
-
-        # Buttons for starting the gameand quitting it. 
-        flag = button('Go!', 510, 340, 100, 50, green, bright_green, game_loop, 'human')
-        button('Quit', 670, 340, 100, 50, red, bright_red, quitgame)
+        # Buttons for starting the game and quitting it. 
+        flag = button('Go!', 700, 220, 100, 50, green, bright_green, game_loop, 'human')
+        button('Quit', 850, 220, 100, 50, red, bright_red, quitgame)
         
         # Update the screen.
         pygame.display.update()
