@@ -1,4 +1,4 @@
-# Build A Train  :bullettrain_side: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train:
+# Build A Train  :bullettrain_side: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train: :train:
 USYD ELEC1005 Project 2
 
 ## Description
