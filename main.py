@@ -97,7 +97,7 @@ def crash():
     pygame.mixer.Sound.stop(drift_sound)
     pygame.mixer.Sound.play(crash_sound)
     message_display('Crashed', game.settings.width / 2 * 15, game.settings.height / 3 * 15, white)
-    time.sleep(1)
+    time.sleep(2)
     screen.fill(white)
     screen.blit(Cover.image, Cover.rect)
 
