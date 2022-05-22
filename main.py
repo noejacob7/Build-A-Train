@@ -199,7 +199,7 @@ def initial_interface():
         timer -=1
 
         # Buttons for starting the game and quitting it. 
-        flag = button('Go!', 700, 220, 100, 50, green, bright_green, game_loop, 'human')
+        flag = button('Play', 700, 220, 100, 50, green, bright_green, game_loop, 'human')
         button('Quit', 850, 220, 100, 50, red, bright_red, quitgame)
         
         # Update the screen.
