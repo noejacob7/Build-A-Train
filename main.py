@@ -228,7 +228,7 @@ def game_loop(player, fps=10):
         if timer == 0:
             pygame.mixer.Sound.set_volume(drift_sound,0.35)
             pygame.mixer.Sound.play(drift_sound)
-            timer = 172
+            timer = 1000
         
         timer -=1
         
