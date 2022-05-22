@@ -58,7 +58,7 @@ fpsClock = pygame.time.Clock()
 screen = pygame.display.set_mode((game.settings.width * 15, game.settings.height * 15))
 
 # Set the game caption
-pygame.display.set_caption('Build the Train')
+pygame.display.set_caption('Build-A-Train')
 
 # Read in each sound files
 crash_sound = pygame.mixer.Sound(base_path('sound/crash2.wav'))
