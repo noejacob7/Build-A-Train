@@ -15,3 +15,4 @@ The objective of the game is to survive as long as possible, and keep collecting
 - The train is in perpetual motion it cannot be stopped midway
 - While moving you must pick up the people icons, to increase your score while simultaneously increasing the length by increasing the number of carriages
 - If you hit a wall or a crash into yourself, the game will end. After the game end your score will be displayed for a few seconds before re-entering the loading screen.
+lol
